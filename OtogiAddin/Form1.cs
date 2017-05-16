@@ -70,7 +70,7 @@ namespace OtogiAddin
             InitializeComponent();
 
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_Closing);
-
+            textBox1.Text = "Genymotion for personal use - Sony Xperia Z - 4.3 - API 18 - 1080x1920 (800x1280, 160dpi) - 192.168.136.101";
             OtogiWindow = FindWindow(null,textBox1.Text);
             if(OtogiWindow.ToInt32() != 0)
             {
@@ -85,12 +85,13 @@ namespace OtogiAddin
 
         public void findOtogi()
         {
+            OtogiWindow = FindWindow(null, textBox1.Text);
             ShowWindowAsync(OtogiWindow, WS_SHOWNORMAL);
             SetForegroundWindow(OtogiWindow);
             GetWindowRect(OtogiWindow, ref OtogiWindowRect);
             OtogiWindowPoint.X = OtogiWindowRect.Left;  //或得Otogi最左上角座標
             OtogiWindowPoint.Y = OtogiWindowRect.Top;
-            label2.Text = "(" + OtogiWindowPoint.X.ToString() + "," + OtogiWindowPoint.Y.ToString() + ")";
+            //label2.Text = "(" + OtogiWindowPoint.X.ToString() + "," + OtogiWindowPoint.Y.ToString() + ")";
         }
 
         public void play2_3_123()
@@ -119,7 +120,7 @@ namespace OtogiAddin
                 return;
             }
 
-            Fight(260, 562, 60);
+            Fight(260, 562, Int32.Parse(battleTimeTextBox.Text));
             if (!mySleep(3000) || stopFight)
             {
                 return;
@@ -155,14 +156,14 @@ namespace OtogiAddin
                 return;
             }
 
-            Fight(283, 371);
+            Fight(283, 371, Int32.Parse(battleTimeTextBox.Text));
             if (!mySleep(3000) || stopFight)
             {
                 return;
             }
 
-            setProcess("進入2.3.1");
-            Fight(286, 624);
+            setProcess("進入2.3.3");
+            Fight(286, 624, Int32.Parse(battleTimeTextBox.Text));
             if (!mySleep(3000) || stopFight)
             {
                 return;
@@ -228,6 +229,7 @@ namespace OtogiAddin
             for(int i=0;i<battleTime*1000;i+=10)
             {
                 Thread.Sleep(10);
+                Application.DoEvents();
                 if(programClosed || stopFight)
                 {
                     return;
@@ -359,7 +361,7 @@ namespace OtogiAddin
             stopTrackMouse = true;
             programClosed = false;
             stopFight = true;
-            stopTrackButton.Hide();
+            //stopTrackButton.Hide();
             stopFightButton.Hide();
         }
 
@@ -372,14 +374,15 @@ namespace OtogiAddin
         private void button1_Click(object sender, EventArgs e)
         {
             getMousePoint();
-            stopTrackButton.Show();
+            //stopTrackButton.Show();
         }
 
         private void startFightButton_Click(object sender, EventArgs e)
         {
             mySleep(1000);
+            findOtogi();
             int times = Int32.Parse(timesTextBox.Text);
-            if(OtogiWindow.ToInt32() == 0)
+            if (OtogiWindow.ToInt32() == 0)
             {
                 setProcess("沒有找到Otogi");
                 return;
@@ -395,11 +398,15 @@ namespace OtogiAddin
             stopFight = false;
             play2_3_123();
             setProcess("開始2.3.1 2.3.2 2.3.3副本");
-            if(times>0)
+            if(times>0 && !stopFight)
             {
                 startFightButton_Click(sender,e);
+                
             }
-            
+            setProcess("結束");
+            stopFightButton.Hide();
+            startFightButton.Show();
+
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -409,8 +416,9 @@ namespace OtogiAddin
 
         private void stopTrackButton_Click(object sender, EventArgs e)
         {
+            timesTextBox.Text = "0";
             stopTrackMouse = true;
-            stopTrackButton.Hide();
+            //stopTrackButton.Hide();
         }
 
         private void timesTextBox_TextChanged(object sender, EventArgs e)
@@ -422,6 +430,16 @@ namespace OtogiAddin
         {
             stopFight = true;
             stopFightButton.Hide();
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void battleTimeTextBox_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
     

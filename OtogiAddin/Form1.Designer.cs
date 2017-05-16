@@ -31,15 +31,15 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.startFightButton = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.timesTextBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.processLabel = new System.Windows.Forms.Label();
-            this.stopTrackButton = new System.Windows.Forms.Button();
             this.stopFightButton = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.battleTimeTextBox = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,7 +50,7 @@
             this.textBox1.Size = new System.Drawing.Size(392, 25);
             this.textBox1.TabIndex = 1;
             this.textBox1.Text = "Genymotion for personal use - Sony Xperia Z - 4.3 - API 18 - 1080x1920 (800x1280," +
-    " 160dpi) - 192.168.172.101";
+    " 160dpi) - 192.168.136.101";
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label1
@@ -79,28 +79,9 @@
             this.tableLayoutPanel1.TabIndex = 3;
             this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(490, 122);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 15);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "label2";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(493, 58);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(83, 23);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "追蹤滑鼠座標";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // startFightButton
             // 
-            this.startFightButton.Location = new System.Drawing.Point(493, 87);
+            this.startFightButton.Location = new System.Drawing.Point(493, 66);
             this.startFightButton.Name = "startFightButton";
             this.startFightButton.Size = new System.Drawing.Size(83, 23);
             this.startFightButton.TabIndex = 6;
@@ -146,19 +127,9 @@
             this.processLabel.TabIndex = 10;
             this.processLabel.Text = "現在進程";
             // 
-            // stopTrackButton
-            // 
-            this.stopTrackButton.Location = new System.Drawing.Point(493, 58);
-            this.stopTrackButton.Name = "stopTrackButton";
-            this.stopTrackButton.Size = new System.Drawing.Size(83, 23);
-            this.stopTrackButton.TabIndex = 11;
-            this.stopTrackButton.Text = "停止追蹤";
-            this.stopTrackButton.UseVisualStyleBackColor = true;
-            this.stopTrackButton.Click += new System.EventHandler(this.stopTrackButton_Click);
-            // 
             // stopFightButton
             // 
-            this.stopFightButton.Location = new System.Drawing.Point(493, 87);
+            this.stopFightButton.Location = new System.Drawing.Point(493, 66);
             this.stopFightButton.Name = "stopFightButton";
             this.stopFightButton.Size = new System.Drawing.Size(83, 23);
             this.stopFightButton.TabIndex = 12;
@@ -166,20 +137,49 @@
             this.stopFightButton.UseVisualStyleBackColor = true;
             this.stopFightButton.Click += new System.EventHandler(this.stopFightButton_Click);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(204, 62);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(97, 15);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "戰鬥等待時間";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(413, 62);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(22, 15);
+            this.label2.TabIndex = 15;
+            this.label2.Text = "秒";
+            // 
+            // battleTimeTextBox
+            // 
+            this.battleTimeTextBox.Location = new System.Drawing.Point(307, 56);
+            this.battleTimeTextBox.Name = "battleTimeTextBox";
+            this.battleTimeTextBox.Size = new System.Drawing.Size(100, 25);
+            this.battleTimeTextBox.TabIndex = 16;
+            this.battleTimeTextBox.Text = "30";
+            this.battleTimeTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.battleTimeTextBox.TextChanged += new System.EventHandler(this.battleTimeTextBox_TextChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(596, 172);
+            this.Controls.Add(this.battleTimeTextBox);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.stopFightButton);
-            this.Controls.Add(this.stopTrackButton);
             this.Controls.Add(this.processLabel);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.timesTextBox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.startFightButton);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "Form1";
             this.Text = "OtogiAddin";
@@ -195,15 +195,15 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button startFightButton;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox timesTextBox;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label processLabel;
-        private System.Windows.Forms.Button stopTrackButton;
         private System.Windows.Forms.Button stopFightButton;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox battleTimeTextBox;
     }
 }
 
